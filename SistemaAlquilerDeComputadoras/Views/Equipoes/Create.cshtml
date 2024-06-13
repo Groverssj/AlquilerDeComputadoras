@@ -1,0 +1,65 @@
+﻿@model SistemaAlquilerDeComputadoras.Models.Equipo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Equipo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Almacenamiento" class="control-label"></label>
+                <input asp-for="Almacenamiento" class="form-control" />
+                <span asp-validation-for="Almacenamiento" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrlFoto" class="control-label"></label>
+                <input asp-for="UrlFoto" class="form-control" />
+                <span asp-validation-for="UrlFoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pantalla" class="control-label"></label>
+                <input asp-for="Pantalla" class="form-control" />
+                <span asp-validation-for="Pantalla" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Procesador" class="control-label"></label>
+                <input asp-for="Procesador" class="form-control" />
+                <span asp-validation-for="Procesador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ram" class="control-label"></label>
+                <input asp-for="Ram" class="form-control" />
+                <span asp-validation-for="Ram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resolucion" class="control-label"></label>
+                <input asp-for="Resolucion" class="form-control" />
+                <span asp-validation-for="Resolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
