@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SistemaAlquilerDeComputadoras.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios del sistema</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nuevo Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cuenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Editar" asp-route-id="@item.Ci">Edit</a> |
+                <a class="btn btn-info" asp-action="Detalles" asp-route-id="@item.Ci">Details</a> |
+                <a class="btn btn-info" asp-action="Eliminar" asp-route-id="@item.Ci">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
