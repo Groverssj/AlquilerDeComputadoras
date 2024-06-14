@@ -1,7 +1,7 @@
 ﻿@model SistemaAlquilerDeComputadoras.Models.Usuario
 
 @{
-    ViewData["Title"] = "Eliminar";
+    ViewData["Title"] = "Delete";
 }
 
 <h1>Eliminar</h1>
@@ -45,7 +45,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Ci" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a class="btn btn-danger" asp-action="Index">Salir</a>
     </form>
 </div>

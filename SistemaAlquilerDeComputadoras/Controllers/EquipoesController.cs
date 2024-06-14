@@ -13,12 +13,10 @@ namespace SistemaAlquilerDeComputadoras.Controllers
     public class EquipoesController : Controller
     {
         private readonly MyContext _context;
-        IWebHostEnvironment _webHostEnvironment;
 
-        public EquipoesController(MyContext context, IWebHostEnvironment _webHostEnvironment)
+        public EquipoesController(MyContext context)
         {
             _context = context;
-            _webHostEnvironment = _webHostEnvironment;
         }
 
         // GET: Equipoes
@@ -56,7 +54,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Codigo,Almacenamiento,Estado,UrlFoto,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
+        public async Task<IActionResult> Create([Bind("Codigo,Almacenamiento,Estado,Foto,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +86,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Codigo,Almacenamiento,Estado,FotoFile,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
+        public async Task<IActionResult> Edit(string id, [Bind("Codigo,Almacenamiento,Estado,Foto,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
         {
             if (id != equipo.Codigo)
             {
@@ -99,11 +97,6 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             {
                 try
                 {
-                    if (equipo.FotoFile != null)
-                    {
-                        await GuardarImagen(equipo);
-                    }
-                  
                     _context.Update(equipo);
                     await _context.SaveChangesAsync();
                 }
@@ -121,21 +114,6 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(equipo);
-        }
-
-        private async Task GuardarImagen(Equipo equipo)
-        {
-            //formar el nombre de la foto
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
-            string extension = Path.GetExtension(equipo.FotoFile!.FileName);
-            string nameFoto = $"{equipo.Codigo}{equipo.Procesador}{extension}";
-
-            equipo.UrlFoto = nameFoto;
-
-            //copiar la foto en el proyecto
-            string path = Path.Combine($"{wwwRootPath}/fotos/", nameFoto);
-            var fileStream = new FileStream(path, FileMode.Create);
-            await equipo.FotoFile.CopyToAsync(fileStream);
         }
 
         // GET: Equipoes/Delete/5

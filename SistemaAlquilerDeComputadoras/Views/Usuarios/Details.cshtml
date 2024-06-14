@@ -1,7 +1,7 @@
 ﻿@model SistemaAlquilerDeComputadoras.Models.Usuario
 
 @{
-    ViewData["Title"] = "Detalles";
+    ViewData["Title"] = "Details";
 }
 
 <h1>Detalles</h1>
@@ -43,6 +43,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Ci">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Ci">Modificar</a> 
+</div>
+<div>
+    <a class="btn btn-danger" asp-action="Index">Salir</a>
 </div>
