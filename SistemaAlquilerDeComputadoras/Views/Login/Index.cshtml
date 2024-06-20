@@ -1,0 +1,147 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Game & Net Rental</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2b3e50;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .login-container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .login-image {
+            background: url('https://via.placeholder.com/900x1000') no-repeat center center;
+            background-size: cover;
+            width: 50%;
+            position: relative;
+        }
+
+            .login-image:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+        .login-form-2 {
+            padding: 4rem;
+            background-color: #354b62;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .login-form-2 h3 {
+                color: #4da6ff;
+                font-weight: bold;
+                margin-bottom: 1.5rem;
+            }
+
+            .login-form-2 .form-control {
+                background-color: #4a6075;
+                border: none;
+                color: #ffffff;
+                margin-bottom: 1.5rem;
+            }
+
+                .login-form-2 .form-control:focus {
+                    background-color: #5b7289;
+                }
+
+            .login-form-2 .btn-primary {
+                background-color: #4da6ff;
+                border: none;
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+                .login-form-2 .btn-primary:hover {
+                    background-color: #397acc;
+                }
+
+            .login-form-2 .form-check-label,
+            .login-form-2 a {
+                color: #4da6ff;
+            }
+
+                .login-form-2 a:hover {
+                    color: #397acc;
+                }
+    </style>
+</head>
+<body>
+    <div class="container login-container">
+        <div class="login-wrapper">
+            <div class="login-image"></div>
+            <div class="login-form-2">
+                <h3>Iniciar Sesión</h3>
+                <form asp-action="Login" asp-controller="Login" method="post">
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo electrónico">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Tu contraseña">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="remember">
+                        <label class="form-check-label" for="remember">Recordarme</label>
+                    </div>
+                    @if (TempData["loginError"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["LoginError"]</div>
+                    }
+                    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+</body>
+</html>
