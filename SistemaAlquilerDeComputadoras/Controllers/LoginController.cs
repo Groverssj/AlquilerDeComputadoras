@@ -33,9 +33,9 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             }
             return RedirectToAction("Index", "Login");
         }
-        public async Task<IActionResult> Logout()
-        {
-            return RedirectToAction("Index", "Login");
-        }
+        //public async task<iactionresult> logout()
+        //{
+        //    return redirecttoaction("index", "login");
+        //}
     }
 }
