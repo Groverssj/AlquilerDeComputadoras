@@ -10,66 +10,71 @@
     <title>Login - Game & Net Rental</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     
 </head>
-<h1>Equipos</h1>
 
-<p>
-    <a class="btn btn-outline-primary" asp-action="Login">Iniciar Sesion</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Almacenamiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pantalla)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Procesador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ram)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resolucion)
-            </th>
-           
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Almacenamiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pantalla)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Procesador)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ram)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resolucion)
-            </td>
-   
-        </tr>
-}
-    </tbody>
-</table>
+<body> 
+    <center>
+        <h1>JUEGOS E INTERNET</h1>
+    </center>
+    <p>
+        <a class="btn btn-info" asp-action="Login">Iniciar Sesion</a>
+    </p>
+    <table class="table" border="2">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Almacenamiento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Foto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pantalla)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Procesador)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ram)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Resolucion)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Almacenamiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Foto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pantalla)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Procesador)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ram)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Resolucion)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
