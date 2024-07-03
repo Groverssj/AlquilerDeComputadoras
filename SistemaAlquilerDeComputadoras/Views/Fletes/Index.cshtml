@@ -10,12 +10,12 @@
     <style>
         body {
             background-color: #333; /* Fondo gris oscuro */
-            color: green; /* Letras verdes para mejor contraste */
+            color: lawngreen; /* Letras verdes para mejor contraste */
         }
 
         .table thead {
             background-color: black; /* Encabezado de la tabla negro */
-            color: green
+            color: lawngreen;
         }
 
         .table tbody td {
@@ -23,16 +23,16 @@
         }
 
         .table tbody tr {
-            border: 1px solid green; /* Bordes de las filas en verde */
+            border: 1px solid lawngreen; /* Bordes de las filas en verde */
         }
 
         .table {
-            border: 2px solid green; /* Borde de la tabla en verde */
+            border: 2px solid lawngreen; /* Borde de la tabla en verde */
         }
 
         .btn {
             margin-right: 5px; /* Espacio entre botones */
-            color: white; /* Letras blancas en los botones */
+            color: white; /* Letras botones */
             border: 1px solid transparent; /* Borde transparente por defecto */
             padding: 5px 10px;
             text-decoration: none; /* Sin subrayado */
@@ -40,26 +40,31 @@
         }
 
         .btn-primary {
-            background-color: #333; /* Color de fondo azul para los botones primarios */
-            border-color: green; /* Borde azul para los botones primarios */
+            background-color: black; /* Color de fondo botones primarios */
+            border-color: lawngreen; /* Borde botones primarios */
         }
 
         .btn-warning {
-            background-color: black; /* Fondo amarillo para botones de advertencia */
-            border-color: green; /* Borde amarillo para botones de advertencia */
-            color: white; /* Letras negras en los botones de advertencia */
+            background-color: black; /* Fondo botones de advertencia */
+            border-color:lawngreen; /* Borde botones de advertencia */
+            color: white; /* Letras  botones de advertencia */
         }
 
         .btn-info {
-            background-color: dimgray; /* Fondo azul claro para botones de información */
-            border-color: lawngreen; /* Borde azul claro para botones de información */
+            background-color: black; /* Fondo botones de información */
+            border-color: lawngreen; /* Borde botones de información */
         }
 
         .btn-danger {
-            background-color: black; /* Fondo rojo para botones de peligro */
-            border-color:lawngreen; /* Borde rojo para botones de peligro */
+            background-color: black; /* Fondo botones de peligro */
+            border-color: lawngreen; /* Borde botones de peligro */
+        }
+
+        .btn-sm {
+            font-size: 0.875rem; /* Tamaño de letra pequeño para los botones */
         }
     </style>
+    
 </head>
 <body>
     <h1 class="display-4">Lista de Fletes</h1>
@@ -70,10 +75,12 @@
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>@Html.DisplayNameFor(model => model.Costo)</th>
+                
+                <th>@Html.DisplayNameFor(model => model.NroRecibo)</th>
                 <th>@Html.DisplayNameFor(model => model.Fecha)</th>
                 <th>@Html.DisplayNameFor(model => model.HoraInicio)</th>
                 <th>@Html.DisplayNameFor(model => model.HoraFinal)</th>
+                <th>@Html.DisplayNameFor(model => model.Costo)</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -81,13 +88,16 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Costo)</td>
+                    
+                    <td>@Html.DisplayFor(modelItem => item.NroRecibo)</td>
                     <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
                     <td>@Html.DisplayFor(modelItem => item.HoraInicio)</td>
                     <td>@Html.DisplayFor(modelItem => item.HoraFinal)</td>
+                    <td class="costo-cell">@Html.DisplayFor(modelItem => item.Costo)</td>
                     <td>
+                        <a asp-action="IniciarTiempo" asp-route-id="@item.NroRecibo" class="btn btn-primary btn-sm">Iniciar</a>
+                        <a asp-action="DetenerTiempo" asp-route-id="@item.NroRecibo" class="btn btn-danger btn-sm">Detener</a>
                         <a asp-action="Edit" asp-route-id="@item.NroRecibo" class="btn btn-warning btn-sm">Editar</a>
-                        <a asp-action="Details" asp-route-id="@item.NroRecibo" class="btn btn-info btn-sm">Detalles</a>
                         <a asp-action="Delete" asp-route-id="@item.NroRecibo" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
                 </tr>

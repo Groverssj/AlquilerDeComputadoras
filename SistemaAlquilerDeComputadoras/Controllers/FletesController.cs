@@ -25,23 +25,6 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             return View(await _context.Flete.ToListAsync());
         }
 
-        // GET: Fletes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var flete = await _context.Flete
-                .FirstOrDefaultAsync(m => m.NroRecibo == id);
-            if (flete == null)
-            {
-                return NotFound();
-            }
-
-            return View(flete);
-        }
 
         // GET: Fletes/Create
         public IActionResult Create()
@@ -153,5 +136,40 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         {
             return _context.Flete.Any(e => e.NroRecibo == id);
         }
+
+        public async Task<IActionResult> IniciarTiempo(int id)
+        {
+            var flete = await _context.Flete.FindAsync(id);
+            if (flete == null)
+            {
+                return NotFound();
+            }
+
+            flete.HoraInicio = DateTime.Now;
+            _context.Update(flete);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> DetenerTiempo(int id)
+        {
+            var flete = await _context.Flete.FindAsync(id);
+            if (flete == null)
+            {
+                return NotFound();
+            }
+
+            flete.HoraFinal = DateTime.Now;
+            TimeSpan duration = flete.HoraFinal - flete.HoraInicio;
+            flete.Costo = (decimal)duration.TotalHours * 2; // Ejemplo: 2 unidades monetarias por hora
+            _context.Update(flete);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        
+
     }
 }

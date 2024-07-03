@@ -73,6 +73,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>@Html.DisplayNameFor(model => model.Codigo)</th>
             <th>@Html.DisplayNameFor(model => model.Almacenamiento)</th>
             <th>@Html.DisplayNameFor(model => model.Estado)</th>
             <th>@Html.DisplayNameFor(model => model.Foto)</th>
@@ -87,6 +88,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
                 <td>@Html.DisplayFor(modelItem => item.Almacenamiento)</td>
                 <td>@Html.DisplayFor(modelItem => item.Estado)</td>
                 <td>@Html.DisplayFor(modelItem => item.Foto)</td>
