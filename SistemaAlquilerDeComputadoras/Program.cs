@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using SistemaAlquilerDeComputadoras.Data;
+using SistemaAlquilerDeComputadoras.Contexto;
+
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SistemaAlquilerDeComputadorasContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SistemaAlquilerDeComputadorasContext") ?? throw new InvalidOperationException("Connection string 'SistemaAlquilerDeComputadorasContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add connection string
+builder.Services.AddDbContext<MyContext>(options => {
+	options.UseSqlite(builder.Configuration.GetConnectionString("CadenaConexion"));
+});
 
 var app = builder.Build();
 
@@ -27,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Catalogo}/{action=Index}/{id?}");
 
 app.Run();

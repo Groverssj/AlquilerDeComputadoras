@@ -1,20 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SistemaAlquilerDeComputadoras.Data;
+using SistemaAlquilerDeComputadoras.Contexto;
 using SistemaAlquilerDeComputadoras.Models;
 
 namespace SistemaAlquilerDeComputadoras.Controllers
 {
     public class EquipoesController : Controller
     {
-        private readonly SistemaAlquilerDeComputadorasContext _context;
+        private readonly MyContext _context;
 
-        public EquipoesController(SistemaAlquilerDeComputadorasContext context)
+        public EquipoesController(MyContext context)
         {
             _context = context;
         }
@@ -22,7 +21,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // GET: Equipoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Equipo.ToListAsync());
+            return View(await _context.Equipos.ToListAsync());
         }
 
         // GET: Equipoes/Details/5
@@ -33,7 +32,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return NotFound();
             }
 
-            var equipo = await _context.Equipo
+            var equipo = await _context.Equipos
                 .FirstOrDefaultAsync(m => m.Codigo == id);
             if (equipo == null)
             {
@@ -50,8 +49,6 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         }
 
         // POST: Equipoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo,Almacenamiento,Estado,Foto,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
@@ -73,7 +70,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return NotFound();
             }
 
-            var equipo = await _context.Equipo.FindAsync(id);
+            var equipo = await _context.Equipos.FindAsync(id);
             if (equipo == null)
             {
                 return NotFound();
@@ -82,8 +79,6 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         }
 
         // POST: Equipoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Codigo,Almacenamiento,Estado,Foto,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
@@ -124,7 +119,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return NotFound();
             }
 
-            var equipo = await _context.Equipo
+            var equipo = await _context.Equipos
                 .FirstOrDefaultAsync(m => m.Codigo == id);
             if (equipo == null)
             {
@@ -139,10 +134,10 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var equipo = await _context.Equipo.FindAsync(id);
+            var equipo = await _context.Equipos.FindAsync(id);
             if (equipo != null)
             {
-                _context.Equipo.Remove(equipo);
+                _context.Equipos.Remove(equipo);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +146,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
 
         private bool EquipoExists(string id)
         {
-            return _context.Equipo.Any(e => e.Codigo == id);
+            return _context.Equipos.Any(e => e.Codigo == id);
         }
     }
 }

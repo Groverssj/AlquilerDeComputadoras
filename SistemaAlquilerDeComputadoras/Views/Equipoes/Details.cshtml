@@ -1,4 +1,4 @@
-﻿@model SistemaAlquilerDeComputadoras.Models.Equipo
+@model SistemaAlquilerDeComputadoras.Models.Equipo
 
 @{
     ViewData["Title"] = "Detalles del Equipo";
@@ -9,8 +9,26 @@
 <style>
     body {
         background-color: darkslateblue;
+        color: white;
+    }
+
+    h1, h4, dt {
+        color: white;
+    }
+
+    dd {
+        color: #d3d3d3;
+    }
+
+    .btn-primary, .btn-secondary {
+        margin-top: 10px;
+    }
+
+    hr {
+        border-top: 1px solid #444;
     }
 </style>
+
 <div class="card mb-4 shadow-sm">
     <div class="card-body">
         <h4 class="card-title">Equipo</h4>
