@@ -162,7 +162,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
 
             flete.HoraFinal = DateTime.Now;
             TimeSpan duration = flete.HoraFinal - flete.HoraInicio;
-            flete.Costo = (decimal)duration.TotalHours * 2; // Ejemplo: 2 unidades monetarias por hora
+            flete.Costo = (decimal)duration.TotalHours * 2; 
             _context.Update(flete);
             await _context.SaveChangesAsync();
 
