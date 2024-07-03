@@ -1,61 +1,77 @@
-﻿@model SistemaAlquilerDeComputadoras.Models.Equipo
+
+@model SistemaAlquilerDeComputadoras.Models.Equipo
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Equipo";
 }
 
-<h1>Modificar</h1>
+<h1 class="display-4">Editar Equipo</h1>
 
-<h4>Equipo</h4>
+<style>
+    body {
+        background-color: #2c2c2c;
+        color: white;
+    }
+
+    h1, h4, label {
+        color: white;
+    }
+
+    .btn-primary, .btn-secondary {
+        margin-top: 10px;
+    }
+</style>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
             <input type="hidden" asp-for="Codigo" />
             <div class="form-group">
-                <label asp-for="Almacenamiento" class="control-label"></label>
+                <label asp-for="Almacenamiento" class="control-label">Almacenamiento</label>
                 <input asp-for="Almacenamiento" class="form-control" />
                 <span asp-validation-for="Almacenamiento" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
-                </label>
+                <input class="form-check-input" asp-for="Estado" />
+                <label class="form-check-label" asp-for="Estado">@Html.DisplayNameFor(model => model.Estado)</label>
             </div>
             <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
+                <label asp-for="FotoFile" class="control-label">Foto</label>
+                <input asp-for="FotoFile" class="form-control" />
+                <span asp-validation-for="FotoFile" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pantalla" class="control-label"></label>
+                <label asp-for="Pantalla" class="control-label">Pantalla</label>
                 <input asp-for="Pantalla" class="form-control" />
                 <span asp-validation-for="Pantalla" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Procesador" class="control-label"></label>
+                <label asp-for="Procesador" class="control-label">Procesador</label>
                 <input asp-for="Procesador" class="form-control" />
                 <span asp-validation-for="Procesador" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ram" class="control-label"></label>
+                <label asp-for="Ram" class="control-label">RAM</label>
                 <input asp-for="Ram" class="form-control" />
                 <span asp-validation-for="Ram" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Resolucion" class="control-label"></label>
+                <label asp-for="Resolucion" class="control-label">Resolución</label>
                 <input asp-for="Resolucion" class="form-control" />
                 <span asp-validation-for="Resolucion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a class="btn btn-danger" asp-action="Index">Salir</a>
-</div>
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,65 +1,102 @@
-﻿@model SistemaAlquilerDeComputadoras.Models.Equipo
+@model SistemaAlquilerDeComputadoras.Models.Equipo
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Equipo";
 }
 
-<h1>Create</h1>
+<style>
+    body {
+        background-color: dimgrey; 
+    }
+</style>
+<h1 class="display-4">Crear Equipo</h1>
 
-<h4>Equipo</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Detalles del Equipo</h4>
+        <hr />
+
+        <form asp-action="Create" class="needs-validation" novalidate>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="Codigo" class="control-label"></label>
-                <input asp-for="Codigo" class="form-control" />
+                <label asp-for="Codigo" class="control-label">Código</label>
+                <input asp-for="Codigo" class="form-control" required />
                 <span asp-validation-for="Codigo" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Almacenamiento" class="control-label"></label>
-                <input asp-for="Almacenamiento" class="form-control" />
-                <span asp-validation-for="Almacenamiento" class="text-danger"></span>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Almacenamiento" class="control-label">Almacenamiento</label>
+                    <input asp-for="Almacenamiento" class="form-control" required />
+                    <span asp-validation-for="Almacenamiento" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Ram" class="control-label">RAM</label>
+                    <input asp-for="Ram" class="form-control" required />
+                    <span asp-validation-for="Ram" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
-                </label>
-            </div>
+
             <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pantalla" class="control-label"></label>
-                <input asp-for="Pantalla" class="form-control" />
-                <span asp-validation-for="Pantalla" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Procesador" class="control-label"></label>
-                <input asp-for="Procesador" class="form-control" />
+                <label asp-for="Procesador" class="control-label">Procesador</label>
+                <input asp-for="Procesador" class="form-control" required />
                 <span asp-validation-for="Procesador" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Ram" class="control-label"></label>
-                <input asp-for="Ram" class="form-control" />
-                <span asp-validation-for="Ram" class="text-danger"></span>
+                <label asp-for="Pantalla" class="control-label">Pantalla</label>
+                <input asp-for="Pantalla" class="form-control" required />
+                <span asp-validation-for="Pantalla" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Resolucion" class="control-label"></label>
-                <input asp-for="Resolucion" class="form-control" />
+                <label asp-for="Resolucion" class="control-label">Resolución</label>
+                <input asp-for="Resolucion" class="form-control" required />
                 <span asp-validation-for="Resolucion" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="FotoFile" class="control-label">Foto</label>
+                <input asp-for="FotoFile" class="form-control" />
+                <span asp-validation-for="FotoFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Estado" />
+                    <label class="form-check-label" asp-for="Estado">Activo</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Crear</button>
+                <a asp-action="Index" class="btn btn-secondary ml-2">Volver a la Lista</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            'use strict';
 
+            var forms = document.querySelectorAll('.needs-validation');
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+    </script>
+}

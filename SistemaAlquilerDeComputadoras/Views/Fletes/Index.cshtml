@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SistemaAlquilerDeComputadoras.Models.Flete>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #333; /* Fondo */
+            color: lawngreen; /* Letras */
+        }
+
+        .table thead {
+            background-color: black; /* Encabezado de la tabla */
+            color: lawngreen;
+        }
+
+        .table tbody td {
+            color: white; /* Letras contenido de la tabla */
+        }
+
+        .table tbody tr {
+            border: 1px solid lawngreen; /* Bordes de las filas */
+        }
+
+        .table {
+            border: 2px solid lawngreen; /* Borde de la tabla */
+        }
+
+        .btn {
+            margin-right: 5px; /* Espacio entre botones */
+            color: white; /* Letras botones */
+            border: 1px solid transparent; /* Borde */
+            padding: 5px 10px;
+            text-decoration: none; /* Sin subrayado */
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: black; /* Color de fondo botones */
+            border-color: lawngreen; /* Borde  */
+        }
+
+        .btn-warning {
+            background-color: black; /* Fondo  */
+            border-color:lawngreen; /* Borde  */
+            color: white; /* Letras  */
+        }
+
+        .btn-info {
+            background-color: black; /* Fondo  */
+            border-color: lawngreen; /* Borde */
+        }
+
+        .btn-danger {
+            background-color: black; /* Fondo */
+            border-color: lawngreen; /* Borde  */
+        }
+
+        .btn-sm {
+            font-size: 0.875rem; /* Tamaño de letra  */
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 class="display-4">Lista de Fletes</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Crear Nuevo Flete</a>
+    </p>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>@Html.DisplayNameFor(model => model.NroRecibo)</th>
+                <th>@Html.DisplayNameFor(model => model.Fecha)</th>
+                <th>@Html.DisplayNameFor(model => model.HoraInicio)</th>
+                <th>@Html.DisplayNameFor(model => model.HoraFinal)</th>
+                <th>@Html.DisplayNameFor(model => model.Costo)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>@Html.DisplayFor(modelItem => item.NroRecibo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HoraInicio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HoraFinal)</td>
+                    <td class="costo-cell">@Html.DisplayFor(modelItem => item.Costo)</td>
+                    <td>
+                        <a asp-action="IniciarTiempo" asp-route-id="@item.NroRecibo" class="btn btn-primary btn-sm">Iniciar</a>
+                        <a asp-action="DetenerTiempo" asp-route-id="@item.NroRecibo" class="btn btn-danger btn-sm">Detener</a>
+                        <a asp-action="Edit" asp-route-id="@item.NroRecibo" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.NroRecibo" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

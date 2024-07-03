@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaAlquilerDeComputadoras.Contexto;
 
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SistemaAlquilerDeComputadorasContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SistemaAlquilerDeComputadorasContext") ?? throw new InvalidOperationException("Connection string 'SistemaAlquilerDeComputadorasContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
