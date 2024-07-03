@@ -33,50 +33,65 @@
     <div class="card-body">
         <h4 class="card-title">Equipo</h4>
         <hr />
-        <dl class="row">
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Almacenamiento)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Almacenamiento)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Estado)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Estado)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Foto)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Foto)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Pantalla)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Pantalla)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Procesador)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Procesador)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Ram)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Ram)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Resolucion)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Resolucion)
-            </dd>
-        </dl>
+
+        <div class="row">
+
+            <div class="col-4 col-sm-4">
+				@if (Model.Foto != null)
+				{
+					<img src="~/fotos/@Model.Foto" class="img-thumbnail" width="180px"/>
+				}
+			</div>
+			<div class="col-8 col-sm-8">
+				<dl class="row">
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Almacenamiento)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Almacenamiento)
+					</dd>
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Estado)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Estado)
+					</dd>
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Foto)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Foto)
+					</dd>
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Pantalla)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Pantalla)
+					</dd>
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Procesador)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Procesador)
+					</dd>
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Ram)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Ram)
+					</dd>
+					<dt class="col-sm-3">
+						@Html.DisplayNameFor(model => model.Resolucion)
+					</dt>
+					<dd class="col-sm-9">
+						@Html.DisplayFor(model => model.Resolucion)
+					</dd>
+				</dl>
+            </div>
+
+        </div>
+
+        
     </div>
 </div>
 

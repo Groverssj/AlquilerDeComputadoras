@@ -114,7 +114,10 @@
                         @Html.DisplayFor(modelItem => item.Estado)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Foto)
+                        @if (item.Foto != null)
+                        {
+                            <img src="~/fotos/@item.Foto" class="img-thumbnail" width="130px" />
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Pantalla)

@@ -12,10 +12,12 @@ namespace SistemaAlquilerDeComputadoras.Controllers
     public class EquipoesController : Controller
     {
         private readonly MyContext _context;
+        IWebHostEnvironment _webHostEnvironment;
 
-        public EquipoesController(MyContext context)
+        public EquipoesController(MyContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Equipoes
@@ -81,7 +83,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // POST: Equipoes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Codigo,Almacenamiento,Estado,Foto,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
+        public async Task<IActionResult> Edit(string id, [Bind("Codigo,Almacenamiento,Estado,FotoFile,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
         {
             if (id != equipo.Codigo)
             {
@@ -92,6 +94,10 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             {
                 try
                 {
+                    if (equipo.FotoFile != null)
+                    {
+                       await GuardarImagen(equipo);
+                    }
                     _context.Update(equipo);
                     await _context.SaveChangesAsync();
                 }
@@ -109,6 +115,19 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(equipo);
+        }
+
+        private async Task GuardarImagen(Equipo equipo)
+        {
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string extension = Path.GetExtension(equipo.FotoFile!.FileName);
+            string nameFoto = $"{equipo.Codigo}{extension}";
+
+            equipo.Foto = nameFoto;
+ 
+            string path = Path.Combine($"{wwwRootPath}/fotos/", nameFoto);
+            var fileStream = new FileStream(path, FileMode.Create);
+            await equipo.FotoFile.CopyToAsync(fileStream);
         }
 
         // GET: Equipoes/Delete/5
