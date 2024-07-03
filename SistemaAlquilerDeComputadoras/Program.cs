@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaAlquilerDeComputadoras.Contexto;
+using SistemaAlquilerDeComputadoras.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
