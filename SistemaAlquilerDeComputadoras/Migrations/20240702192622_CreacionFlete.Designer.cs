@@ -23,7 +23,7 @@ namespace SistemaAlquilerDeComputadoras.Migrations
                 .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
 
             modelBuilder.Entity("SistemaAlquilerDeComputadoras.Models.Equipo", b =>
                 {
@@ -62,7 +62,7 @@ namespace SistemaAlquilerDeComputadoras.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroRecibo"));
+
 
                     b.Property<decimal>("Costo")
                         .HasColumnType("decimal(18,2)");
