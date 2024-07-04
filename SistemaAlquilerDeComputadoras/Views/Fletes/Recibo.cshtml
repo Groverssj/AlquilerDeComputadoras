@@ -1,0 +1,68 @@
+﻿@model SistemaAlquilerDeComputadoras.Models.Recibo
+
+@{
+    ViewData["Title"] = "Generar Recibo";
+}
+
+<h1>Generar Recibo</h1>
+
+<h4>Flete</h4>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nro Recibo
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Flete.NroRecibo
+        </dd>
+        <dt class="col-sm-2">
+            Costo
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Flete.Costo
+        </dd>
+        <dt class="col-sm-2">
+            Fecha
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Flete.Fecha
+        </dd>
+        <dt class="col-sm-2">
+            Hora Inicio
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Flete.HoraInicio
+        </dd>
+        <dt class="col-sm-2">
+            Hora Final
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Flete.HoraFinal
+        </dd>
+    </dl>
+</div>
+
+<h4>Datos del Cliente</h4>
+<hr />
+<form asp-action="GenerarRecibo">
+    <div class="form-group">
+        <label asp-for="Cliente.Ci" class="control-label"></label>
+        <input asp-for="Cliente.Ci" class="form-control" />
+        <span asp-validation-for="Cliente.Ci" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cliente.NombreCompleto" class="control-label"></label>
+        <input asp-for="Cliente.NombreCompleto" class="form-control" />
+        <span asp-validation-for="Cliente.NombreCompleto" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Flete.NroRecibo" />
+    <div class="form-group">
+        <input type="submit" value="Generar Recibo" class="btn btn-primary" />
+    </div>
+    <h4>Código QR</h4>
+    <hr />
+    <div>
+        <img src="@Url.Action("GenerarQR", new { id = Model.Flete.NroRecibo })" alt="Código QR" />
+    </div>
+</form>

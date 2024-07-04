@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -170,7 +171,58 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Fletes/GenerarRecibo/5
+        public async Task<IActionResult> GenerarRecibo(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var flete = await _context.Fletes.FindAsync(id);
+            if (flete == null)
+            {
+                return NotFound();
+            }
+
+            var recibo = new Recibo
+            {
+                Flete = flete,
+                Cliente = new Cliente()
+            };
+
+            return View("recibo", recibo);
+        }
+
+        // POST: Fletes/GenerarRecibo/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GenerarRecibo(int id, [Bind("Flete,Cliente")] Recibo recibo)
+        {
+            if (id != recibo.Flete.NroRecibo)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                var clienteExistente = await _context.Clientes.FindAsync(recibo.Cliente.Ci);
+                if (clienteExistente == null)
+                {
+                    _context.Clientes.Add(recibo.Cliente);
+                    await _context.SaveChangesAsync();
+                }
+
+
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View("recibo", recibo);
+        }
         
+
+
 
     }
 }
