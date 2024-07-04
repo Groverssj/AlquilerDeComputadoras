@@ -73,9 +73,9 @@
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Codigo)</th>
-            <th>@Html.DisplayNameFor(model => model.Almacenamiento)</th>
-            <th>@Html.DisplayNameFor(model => model.Estado)</th>
             <th>@Html.DisplayNameFor(model => model.Foto)</th>
+            <th>@Html.DisplayNameFor(model => model.Estado)</th>
+            <th>@Html.DisplayNameFor(model => model.Almacenamiento)</th>
             <th>@Html.DisplayNameFor(model => model.Pantalla)</th>
             <th>@Html.DisplayNameFor(model => model.Procesador)</th>
             <th>@Html.DisplayNameFor(model => model.Ram)</th>
@@ -88,14 +88,14 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Almacenamiento)</td>
-                <td>@Html.DisplayFor(modelItem => item.Estado)</td>
                 <td>
                     @if (item.Foto != null)
                     {
                         <img src="~/fotos/@item.Foto" class="img-thumbnail" width="180px" />
                     }
                 </td>
+                <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Almacenamiento)</td>
                 <td>@Html.DisplayFor(modelItem => item.Pantalla)</td>
                 <td>@Html.DisplayFor(modelItem => item.Procesador)</td>
                 <td>@Html.DisplayFor(modelItem => item.Ram)</td>

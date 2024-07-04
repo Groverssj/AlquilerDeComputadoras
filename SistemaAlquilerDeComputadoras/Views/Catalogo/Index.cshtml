@@ -81,13 +81,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Almacenamiento)
+                    @Html.DisplayNameFor(model => model.Foto)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Estado)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Foto)
+                    @Html.DisplayNameFor(model => model.Almacenamiento)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Pantalla)
@@ -108,16 +108,16 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Almacenamiento)
+                        @if (item.Foto != null)
+                        {
+                            <img src="~/fotos/@item.Foto" class="img-thumbnail" width="130px" />
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Estado)
                     </td>
                     <td>
-                        @if (item.Foto != null)
-                        {
-                            <img src="~/fotos/@item.Foto" class="img-thumbnail" width="130px" />
-                        }
+                        @Html.DisplayFor(modelItem => item.Almacenamiento)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Pantalla)

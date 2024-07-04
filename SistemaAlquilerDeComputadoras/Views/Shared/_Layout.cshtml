@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,19 +23,30 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                        </li>                
+                        </li>     
+                        @* <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Fletes" asp-action="Index">Fletes</a>
+                        </li> *@
+
+                        @if (User.IsInRole("Gerente"))
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
                         </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Equipoes" asp-action="Index">Equipos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Catalogo" asp-action="Logout">Cerrar Sesión</a>
                         </li>
+                        <span class="navbar-text">
+                            @User.Identity?.Name | @User.FindFirstValue(ClaimTypes.Role)
+                        </span>
                     </ul>
                 </div>
             </div>
