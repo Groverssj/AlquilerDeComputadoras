@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaAlquilerDeComputadoras.Contexto;
@@ -12,29 +11,23 @@ using SistemaAlquilerDeComputadoras.Contexto;
 namespace SistemaAlquilerDeComputadoras.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20240704143344_SQLserver")]
-    partial class SQLserver
+    [Migration("20240704154528_Primeramigracion")]
+    partial class Primeramigracion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
 
             modelBuilder.Entity("SistemaAlquilerDeComputadoras.Models.Cliente", b =>
                 {
                     b.Property<int>("Ci")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ci"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("NombreCompleto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Ci");
 
@@ -45,30 +38,28 @@ namespace SistemaAlquilerDeComputadoras.Migrations
                 {
                     b.Property<int>("Codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Almacenamiento")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Estado")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Foto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Pantalla")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Procesador")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Ram")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Resolucion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Codigo");
 
@@ -79,24 +70,32 @@ namespace SistemaAlquilerDeComputadoras.Migrations
                 {
                     b.Property<int>("NroRecibo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroRecibo"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Costo")
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EquipoId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("HoraFinal")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("HoraInicio")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("NroRecibo");
+
+                    b.HasIndex("EquipoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Fletes");
                 });
@@ -105,28 +104,55 @@ namespace SistemaAlquilerDeComputadoras.Migrations
                 {
                     b.Property<int>("Ci")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Ci"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Cuenta")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Edad")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("NombreCompleto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Rol")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Ci");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("SistemaAlquilerDeComputadoras.Models.Flete", b =>
+                {
+                    b.HasOne("SistemaAlquilerDeComputadoras.Models.Equipo", "Equipo")
+                        .WithMany("Fletes")
+                        .HasForeignKey("EquipoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaAlquilerDeComputadoras.Models.Usuario", "Usuario")
+                        .WithMany("Fletes")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Equipo");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("SistemaAlquilerDeComputadoras.Models.Equipo", b =>
+                {
+                    b.Navigation("Fletes");
+                });
+
+            modelBuilder.Entity("SistemaAlquilerDeComputadoras.Models.Usuario", b =>
+                {
+                    b.Navigation("Fletes");
                 });
 #pragma warning restore 612, 618
         }

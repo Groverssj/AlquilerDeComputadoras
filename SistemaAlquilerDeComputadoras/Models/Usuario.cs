@@ -12,5 +12,8 @@ namespace SistemaAlquilerDeComputadoras.Models
         public int Edad { get; set; }
         public string? Password { get; set; }
         public RolEnum Rol { get; set; }
+
+        //Relaciones 1 ----> *
+        public virtual List<Flete>? Fletes { get; set; }
     }
 }

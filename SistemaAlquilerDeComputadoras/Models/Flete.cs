@@ -12,5 +12,11 @@ namespace SistemaAlquilerDeComputadoras.Models
         public DateTime Fecha { get; set; }
         public DateTime HoraInicio { get; set; }
         public DateTime HoraFinal { get; set; }
+
+        //Relaciones de *---->1 
+        public int UsuarioId { get; set; }
+        public int EquipoId { get; set; }
+        public virtual Usuario? Usuario { get; set; }
+        public virtual Equipo? Equipo { get; set; }
     }
 }

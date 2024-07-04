@@ -19,5 +19,7 @@ namespace SistemaAlquilerDeComputadoras.Models
         public string? Procesador { get; set; }
         public int Ram { get; set; }
         public string? Resolucion { get; set; }
+        //Relaciones *  ----> 1
+        public virtual List<Flete>? Fletes { get; set; }
     }
 }

@@ -120,7 +120,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             return View(usuario);
         }
 
-        // GET: Usuarios/Delete/5
+        //GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
