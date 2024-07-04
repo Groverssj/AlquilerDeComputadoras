@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SistemaAlquilerDeComputadoras.Contexto;
 using SistemaAlquilerDeComputadoras.Data;
 using SistemaAlquilerDeComputadoras.Models;
 
@@ -12,9 +13,9 @@ namespace SistemaAlquilerDeComputadoras.Controllers
 {
     public class FletesController : Controller
     {
-        private readonly SistemaAlquilerDeComputadorasContext _context;
+        private readonly MyContext _context;
 
-        public FletesController(SistemaAlquilerDeComputadorasContext context)
+        public FletesController(MyContext context)
         {
             _context = context;
         }
@@ -22,7 +23,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // GET: Fletes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Flete.ToListAsync());
+            return View(await _context.Fletes.ToListAsync());
         }
 
 
@@ -56,7 +57,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return NotFound();
             }
 
-            var flete = await _context.Flete.FindAsync(id);
+            var flete = await _context.Fletes.FindAsync(id);
             if (flete == null)
             {
                 return NotFound();
@@ -107,7 +108,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
                 return NotFound();
             }
 
-            var flete = await _context.Flete
+            var flete = await _context.Fletes
                 .FirstOrDefaultAsync(m => m.NroRecibo == id);
             if (flete == null)
             {
@@ -122,10 +123,10 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var flete = await _context.Flete.FindAsync(id);
+            var flete = await _context.Fletes.FindAsync(id);
             if (flete != null)
             {
-                _context.Flete.Remove(flete);
+                _context.Fletes.Remove(flete);
             }
 
             await _context.SaveChangesAsync();
@@ -134,12 +135,12 @@ namespace SistemaAlquilerDeComputadoras.Controllers
 
         private bool FleteExists(int id)
         {
-            return _context.Flete.Any(e => e.NroRecibo == id);
+            return _context.Fletes.Any(e => e.NroRecibo == id);
         }
 
         public async Task<IActionResult> IniciarTiempo(int id)
         {
-            var flete = await _context.Flete.FindAsync(id);
+            var flete = await _context.Fletes.FindAsync(id);
             if (flete == null)
             {
                 return NotFound();
@@ -154,7 +155,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
 
         public async Task<IActionResult> DetenerTiempo(int id)
         {
-            var flete = await _context.Flete.FindAsync(id);
+            var flete = await _context.Fletes.FindAsync(id);
             if (flete == null)
             {
                 return NotFound();
