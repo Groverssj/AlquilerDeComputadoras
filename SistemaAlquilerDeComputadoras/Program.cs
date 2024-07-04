@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using SistemaAlquilerDeComputadoras.Contexto;
-using SistemaAlquilerDeComputadoras.Data;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<SistemaAlquilerDeComputadorasContext>(options =>
+/*builder.Services.AddDbContext<SistemaAlquilerDeComputadorasContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SistemaAlquilerDeComputadorasContext") ?? throw new InvalidOperationException("Connection string 'SistemaAlquilerDeComputadorasContext' not found.")));
-
+*/
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Add connection string
 builder.Services.AddDbContext<MyContext>(options => {
-	options.UseSqlite(builder.Configuration.GetConnectionString("CadenaConexion"));
+	options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaConexion"));
 });
 
 //Cookies, Authentication and Authorization
