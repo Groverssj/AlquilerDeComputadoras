@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using SistemaAlquilerDeComputadoras.Contexto;
 using SistemaAlquilerDeComputadoras.Data;
@@ -14,6 +15,14 @@ builder.Services.AddDbContext<MyContext>(options => {
 	options.UseSqlite(builder.Configuration.GetConnectionString("CadenaConexion"));
 });
 
+//Cookies, Authentication and Authorization
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option => {
+        option.LoginPath = "/Login/Index";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        option.AccessDeniedPath = "/Home/Privacy";
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

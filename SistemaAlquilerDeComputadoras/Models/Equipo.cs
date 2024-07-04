@@ -8,7 +8,7 @@ namespace SistemaAlquilerDeComputadoras.Models
     public class Equipo
     {
         [Key]
-        public string? Codigo { get; set; }
+        public int Codigo { get; set; }
         public int Almacenamiento { get; set; }
         public Boolean Estado { get; set; }
         public string? Foto { get; set; }

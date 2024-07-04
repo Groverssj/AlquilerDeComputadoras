@@ -6,6 +6,52 @@
 
 <h1>Usuarios</h1>
 
+<style>
+    body {
+        background-color: #2c2c2c;
+        color: white;
+    }
+
+    h1 {
+        color: white;
+    }
+
+    .table {
+        color: white;
+    }
+
+        .table thead th {
+            border-bottom: 2px solid white;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid white;
+        }
+
+        .table tbody td {
+            color: white;
+        }
+
+    .btn-outline-primary, .btn-outline-dark {
+        margin-right: 5px;
+        color: white;
+        border-color: white;
+    }
+
+        .btn-outline-primary:hover, .btn-outline-dark:hover {
+            background-color: white;
+            color: #2c2c2c;
+        }
+
+    a {
+        color: white;
+    }
+
+        a:hover {
+            color: white;
+        }
+</style>
+
 <p>
     <a class="btn btn-outline-primary" asp-action="Create">Crear Usuario</a>
 </p>
@@ -31,29 +77,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cuenta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rol)
-            </td>
-            <td>
-                <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Ci">Modificar</a> |
-                <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@item.Ci">Detalles</a> |
-                <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Ci">Eliminar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cuenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rol)
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Ci">Modificar</a> |
+                    <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@item.Ci">Detalles</a> |
+                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Ci">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -27,7 +27,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         }
 
         // GET: Equipoes/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         }
 
         // GET: Equipoes/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -83,7 +83,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // POST: Equipoes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Codigo,Almacenamiento,Estado,FotoFile,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
+        public async Task<IActionResult> Edit(int id, [Bind("Codigo,Almacenamiento,Estado,FotoFile,Pantalla,Procesador,Ram,Resolucion")] Equipo equipo)
         {
             if (id != equipo.Codigo)
             {
@@ -131,7 +131,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         }
 
         // GET: Equipoes/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -151,7 +151,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
         // POST: Equipoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var equipo = await _context.Equipos.FindAsync(id);
             if (equipo != null)
@@ -163,7 +163,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EquipoExists(string id)
+        private bool EquipoExists(int id)
         {
             return _context.Equipos.Any(e => e.Codigo == id);
         }
