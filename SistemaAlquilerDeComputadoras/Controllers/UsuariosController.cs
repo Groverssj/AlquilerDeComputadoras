@@ -13,9 +13,7 @@ namespace SistemaAlquilerDeComputadoras.Controllers
 {
     [Authorize(Roles = "Gerente")]
     public class UsuariosController : Controller
-    {
-        
-        
+    {        
         private readonly MyContext _context;
 
         public UsuariosController(MyContext context)
